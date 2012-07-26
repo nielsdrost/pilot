@@ -1,0 +1,35 @@
+<project name="glue-examples" default="build" basedir=".">
+	<description>
+      Build file for the Ibis-as-Glue examples
+    </description>
+
+	<property name="deploy" location="deploy/lib" />
+	
+	<path id="default.classpath">
+		<fileset dir="${deploy}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile" description="compile the source ">
+		<mkdir dir="tmp" />
+		<mkdir dir="lib" />
+
+		<!-- Compile the java code from src into tmp -->
+		<javac source="1.5" target="1.5" srcdir="src" destdir="tmp" debug="on" includeantruntime="false">
+			<classpath refid="default.classpath" />
+		</javac>
+
+		<!-- Put everything in tmp into the jar file -->
+		<jar jarfile="lib/${ant.project.name}.jar" basedir="tmp" />
+
+		<delete dir="tmp" />
+	</target>
+
+	<target name="build" description="build everything" depends="clean,compile" />
+
+	<target name="clean" description="clean up">
+		<delete dir="tmp" />
+		<delete dir="lib" />
+	</target>
+</project>

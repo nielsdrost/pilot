@@ -1,0 +1,5 @@
+# Pilot jobs with IbisDeploy
+
+scripts/ibis-deploy-gui deploy-workspace
+
+scripts/ibis-deploy-cli deploy-workspace

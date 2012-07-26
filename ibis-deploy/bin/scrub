@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#defaults to current directory, set in environment to override if necessary
+if [ -z "$DEPLOY_HOME" ];  then
+	DEPLOY_HOME=.
+fi
+
+MAIN_CLASS=ibis.deploy.cli.Scrub
+
+exec java -classpath $DEPLOY_HOME:$DEPLOY_HOME/lib/*:$DEPLOY_HOME/lib/castor-1.1.1-xml.jar -Dgat.adaptor.path=$DEPLOY_HOME/lib/adaptors -Dibis.deploy.home=$DEPLOY_HOME $MAIN_CLASS $*
