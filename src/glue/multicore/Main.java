@@ -2,7 +2,6 @@ package glue.multicore;
 
 import ibis.ipl.server.Server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Properties;
