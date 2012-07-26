@@ -1,0 +1,8 @@
+/tmp_eclipse
+/.classpath
+/.project
+/lib
+/output-images
+/*.err.txt
+/*.out.txt
+
