@@ -21,20 +21,20 @@ JobServer.main.class = glue.multicore.JobServer
 JobServer.libs = lib, ibis-deploy/lib-server
 #JobServer.system.properties =
 #JobServer.java.options =
-#JobServer.log4j.file =
+JobServer.log4j.file = log4j.properties
 #JobServer.memory.size =
 
 # in-place version (must set absolute path of input/output images,
 # only works if JobServer is on localhost
-#JobServer.arguments = --script --input /Users/niels/workspace/tutorial/glue-code/images --output /Users/niels/workspace/tutorial/glue-code/output-images
-#JobServer.input.files = scripts/blur.sh
-#JobServer.output.files = 
+JobServer.arguments = --script blur.sh --input /home/niels/workspace/pilot/images --output /home/niels/workspace/pilot/output-images
+JobServer.input.files = scripts/blur.sh
+JobServer.output.files = 
 
 # input/output via sandbox version. Extra copy of input/output files, 
 # but supports a JobServer on _any_ machine, not just localhost
-JobServer.arguments = --script blur.sh --input images --output output-images
-JobServer.input.files = images, scripts/blur.sh
-JobServer.output.files = output-images
+#JobServer.arguments = --script blur.sh --input images --output output-images
+#JobServer.input.files = images, scripts/blur.sh
+#JobServer.output.files = output-images
 
 # Application "Pilot"
 Pilot.main.class = glue.multicore.PilotJob
@@ -44,5 +44,5 @@ Pilot.libs = lib, ibis-deploy/lib-server
 #Pilot.output.files =
 #Pilot.system.properties =
 #Pilot.java.options =
-#Pilot.log4j.file =
+Pilot.log4j.file = log4j.properties
 #Pilot.memory.size =

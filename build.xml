@@ -3,10 +3,10 @@
       Build file for the Ibis-as-Glue examples
     </description>
 
-	<property name="deploy" location="deploy/lib" />
+	<property name="ibis-deploy" location="ibis-deploy/lib" />
 	
 	<path id="default.classpath">
-		<fileset dir="${deploy}">
+		<fileset dir="${ibis-deploy}">
 			<include name="*.jar" />
 		</fileset>
 	</path>

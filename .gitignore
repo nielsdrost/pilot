@@ -5,4 +5,6 @@
 /output-images
 /*.err.txt
 /*.out.txt
+/.JavaGAT*
 
+/all-images

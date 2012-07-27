@@ -26,11 +26,11 @@ public class Shared {
     /** PortType used in communication to JobServer */
     public static final PortType portTypeServer = new PortType(
             PortType.COMMUNICATION_RELIABLE, PortType.SERIALIZATION_OBJECT,
-            PortType.RECEIVE_EXPLICIT, PortType.CONNECTION_MANY_TO_ONE);
+            PortType.RECEIVE_AUTO_UPCALLS, PortType.CONNECTION_MANY_TO_ONE);
 
     /** IbisCapabilities needed for both JobsServer and PilotJobs */
     public static final IbisCapabilities ibisCapabilities = new IbisCapabilities(
-            IbisCapabilities.ELECTIONS_STRICT);
+            IbisCapabilities.ELECTIONS_STRICT, IbisCapabilities.TERMINATION);
 
     /** Read a file input a byte array */
     public static byte[] read(String file) throws IOException {
