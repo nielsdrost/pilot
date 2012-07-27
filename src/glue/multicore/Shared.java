@@ -62,13 +62,15 @@ public class Shared {
         throw new FileNotFoundException("Cannot access " + file);
     }
 
-    /** Write a byte array to a file. Also created directory if needed */
+    /** Write a byte array to a file. Also created directory if needed. Writes via a tmp file, then moves to the final file */
     public static void write(String fileName, byte[] data) throws IOException {
         File file = new File(fileName);
         file.getAbsoluteFile().getParentFile().mkdirs();
-        FileOutputStream out = new FileOutputStream(file);
+        File tmpFile = new File(fileName + ".tmp");
+        FileOutputStream out = new FileOutputStream(tmpFile);
         out.write(data);
         out.close();
+        tmpFile.renameTo(file);
     }
 
     /** List all files in a directory with a specific extention. */
@@ -82,5 +84,18 @@ public class Shared {
         }
 
         return inputdir.list(new Filter(extention));
+    }
+    
+    /** List all files in a directory with a specific extention. */
+    public static String[] listFiles(String directory) {
+
+        File inputdir = new File(directory);
+
+        if (!inputdir.isDirectory()) {
+            System.err.println("Need directory as input!");
+            System.exit(1);
+        }
+
+        return inputdir.list();
     }
 }

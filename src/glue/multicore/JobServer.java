@@ -239,7 +239,7 @@ public class JobServer implements MessageUpcall {
 
         logger.debug("Reading jobs...");
 
-        for (String file : FileUtils.listFiles(inputDir, ".jpg")) {
+        for (String file : FileUtils.listFiles(inputDir)) {
             if (!jobsRead.contains(file)) {
                 jobs.add(new Job(number++, script, file, "out-" + file));
                 

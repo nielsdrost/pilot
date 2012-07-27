@@ -46,26 +46,18 @@ public class FileUtils {
     }
 
      
-    /**
-     * Write a byte array into a file.
-     *  
-     * @param file path to the file to write.
-     * @param data bytes to write into the file. 
-     * @throws IOException if the file could not be written.
-     */    
-    public static void write(String file, byte[] data) throws IOException {
-        FileOutputStream out = new FileOutputStream(new File(file));
+    /** Write a byte array to a file. Also created directory if needed. Writes via a tmp file, then moves to the final file */
+    public static void write(String fileName, byte[] data) throws IOException {
+        File file = new File(fileName);
+        file.getAbsoluteFile().getParentFile().mkdirs();
+        File tmpFile = new File(fileName + ".tmp");
+        FileOutputStream out = new FileOutputStream(tmpFile);
         out.write(data);
         out.close();
+        tmpFile.renameTo(file);
     }
 
-    /**
-     * List all files in a directory with a specific extension.
-     * 
-     * @param directory path to the directory to list. 
-     * @param extention file extension of the file that should be listed. 
-     * @return a String array containing all matching filenames. 
-     */
+    /** List all files in a directory with a specific extention. */
     public static String[] listFiles(String directory, String extention) {
 
         File inputdir = new File(directory);
@@ -76,7 +68,20 @@ public class FileUtils {
         }
 
         return inputdir.list(new Filter(extention));
-    }    
+    }
+    
+    /** List all files in a directory with a specific extention. */
+    public static String[] listFiles(String directory) {
+
+        File inputdir = new File(directory);
+
+        if (!inputdir.isDirectory()) {
+            System.err.println("Need directory as input!");
+            System.exit(1);
+        }
+
+        return inputdir.list();
+    }
     
     /** 
      * Close a Closeable (such as a stream or file) while ignoring any exceptions.
